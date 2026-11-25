@@ -10,7 +10,7 @@ import { ProductCard } from "@/components/site/ProductCard";
 import { CATEGORIES } from "@/lib/constants";
 import { smartSearch } from "@/lib/ai.functions";
 
-type Search = { q?: string; category?: string; ai?: boolean };
+type Search = { q?: string | undefined; category?: string | undefined; ai?: boolean | undefined };
 
 export const Route = createFileRoute("/shop")({
   validateSearch: (s: Record<string, unknown>): Search => ({

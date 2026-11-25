@@ -29,8 +29,6 @@ export function Header() {
         <nav className="ml-6 hidden gap-5 text-sm font-medium md:flex">
           <Link to="/shop" className="hover:text-terracotta" activeProps={{ className: "text-terracotta" }}>Shop</Link>
           {user && <Link to="/orders" className="hover:text-terracotta">My Orders</Link>}
-          {roles.includes("artisan") && <Link to="/artisan" className="hover:text-terracotta">Artisan Dashboard</Link>}
-          {roles.includes("admin") && <Link to="/admin" className="hover:text-terracotta">Admin</Link>}
         </nav>
         <form onSubmit={submit} className="ml-auto hidden max-w-xs flex-1 items-center md:flex">
           <div className="relative w-full">
@@ -52,8 +50,6 @@ export function Header() {
                 <DropdownMenuLabel>{profile?.full_name || user.email}<div className="text-xs font-normal text-muted-foreground capitalize">{roles.join(", ")}</div></DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => nav({ to: "/orders" })}>My Orders</DropdownMenuItem>
-                {roles.includes("artisan") && <DropdownMenuItem onClick={() => nav({ to: "/artisan" })}>Artisan Dashboard</DropdownMenuItem>}
-                {roles.includes("admin") && <DropdownMenuItem onClick={() => nav({ to: "/admin" })}>Admin Panel</DropdownMenuItem>}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={async () => { await signOut(); nav({ to: "/" }); }}>Sign out</DropdownMenuItem>
               </DropdownMenuContent>
@@ -70,8 +66,6 @@ export function Header() {
             <Link to="/shop" onClick={() => setOpen(false)}>Shop all</Link>
             {CATEGORIES.map((c) => <Link key={c} to="/shop" search={{ category: c }} onClick={() => setOpen(false)} className="pl-3 text-muted-foreground">{c}</Link>)}
             {user && <Link to="/orders" onClick={() => setOpen(false)}>My Orders</Link>}
-            {roles.includes("artisan") && <Link to="/artisan" onClick={() => setOpen(false)}>Artisan Dashboard</Link>}
-            {roles.includes("admin") && <Link to="/admin" onClick={() => setOpen(false)}>Admin</Link>}
           </div>
         </div>
       )}
